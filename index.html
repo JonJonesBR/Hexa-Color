@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerador de Cores Aleatórias</title>
+    <!-- Carregando o Tailwind CSS para um design moderno -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* Usando a fonte Inter para uma aparência mais limpa */
+        body {
+            font-family: 'Inter', sans-serif;
+            /* Adiciona uma transição suave para a mudança de cor de fundo */
+            transition: background-color 0.5s ease;
+        }
+    </style>
+</head>
+<body class="flex items-center justify-center h-screen bg-gray-100">
+
+    <!-- Container principal -->
+    <main class="text-center p-8 bg-white/50 backdrop-blur-sm rounded-xl shadow-lg space-y-6">
+        <h1 class="text-2xl md:text-3xl font-bold text-gray-800">Gerador de Cores Aleatórias</h1>
+        
+        <!-- Bloco para exibir o código da cor -->
+        <div class="bg-gray-700 text-white font-mono text-2xl py-3 px-6 rounded-lg shadow-inner">
+            <span id="color-code">#FFFFFF</span>
+        </div>
+
+        <!-- Botão para gerar uma nova cor -->
+        <button id="generate-btn" class="w-full bg-blue-600 text-white font-bold py-3 px-6 rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300 transform hover:scale-105 transition-transform">
+            Gerar Nova Cor
+        </button>
+    </main>
+
+    <script>
+        // Seleciona os elementos do DOM que vamos manipular
+        const generateBtn = document.getElementById('generate-btn');
+        const colorCodeSpan = document.getElementById('color-code');
+        const body = document.body;
+
+        /**
+         * Gera uma cor hexadecimal aleatória e a aplica na página.
+         */
+        function generateAndApplyColor() {
+            // Caracteres possíveis em um código hexadecimal
+            const hexChars = '0123456789ABCDEF';
+            let hexColor = '#';
+
+            // Gera 6 caracteres aleatórios para formar o código da cor
+            for (let i = 0; i < 6; i++) {
+                hexColor += hexChars[Math.floor(Math.random() * 16)];
+            }
+
+            // Aplica a cor gerada ao fundo da página
+            body.style.backgroundColor = hexColor;
+
+            // Exibe o código da cor na tela
+            colorCodeSpan.textContent = hexColor;
+        }
+
+        // Adiciona o "ouvinte" de evento para o clique no botão
+        generateBtn.addEventListener('click', generateAndApplyColor);
+
+        // Gera uma cor inicial assim que a página é carregada
+        window.onload = generateAndApplyColor;
+    </script>
+
+</body>
+</html>
